@@ -1,0 +1,22 @@
+[project]
+name = "lakehouse-orchestration"
+version = "0.1.0"
+description = "Airflow-orchestrated Apache Iceberg lakehouse with Polars transforms and an AWS Lambda entry point"
+requires-python = ">=3.10"
+dependencies = ["polars>=1.20", "pyarrow>=17", "pyiceberg[sql-sqlite,pyarrow,pyiceberg-core]>=0.9"]
+
+[project.optional-dependencies]
+airflow = ["apache-airflow>=3.0"]
+aws = ["pyiceberg[glue,s3fs]>=0.9", "boto3"]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
